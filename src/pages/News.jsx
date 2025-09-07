@@ -14,7 +14,7 @@ export default function News() {
               <h3 className="text-lg font-semibold">{u.headline}</h3>
               <p className="text-sm text-gray-400">{u.date}</p>
             </div>
-            <a href="#" className="text-gold hover:underline">Read</a>
+            <a href="/Home" className="text-gold hover:underline">Read</a>
           </div>
         ))}
       </div>

@@ -17,7 +17,7 @@ export default function Blog() {
           <article key={p.id} className="bg-black border border-gold/30 rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
             <p className="text-gray-300 mb-3">{p.excerpt}</p>
-            <a href="#" className="text-gold hover:underline">{t('read_more')}</a>
+            <a href="/blog" className="text-gold hover:underline">{t('read_more')}</a>
           </article>
         ))}
       </div>

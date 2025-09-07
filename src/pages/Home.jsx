@@ -5,10 +5,10 @@ import NewsletterSignup from '../components/NewsletterSignup';
 
 import { useUi, useT } from '../context/UiContext.jsx';
 
-const BRAND = {
-  name: 'Angel Nexus',
-  tagline: 'Ego kills growth'
-};
+// const BRAND = {
+//   name: 'Angel Nexus',
+//   tagline: 'Ego kills growth'
+// };
 
 export default function Home() {
   const { lang } = useUi();
@@ -58,8 +58,8 @@ export default function Home() {
               <h3 className="text-xl font-semibold">Download the app or visit website</h3>
               <p className="text-purple-100">Start on web or mobile — quick signup.</p>
               <div className="flex gap-3 pt-2">
-                <a className="bg-black text-white px-3 py-2 rounded text-xs" href="#">App Store</a>
-                <a className="bg-black text-white px-3 py-2 rounded text-xs" href="#">Google Play</a>
+                <a className="bg-black text-white px-3 py-2 rounded text-xs" href="/Home">App Store</a>
+                <a className="bg-black text-white px-3 py-2 rounded text-xs" href="/Home">Google Play</a>
               </div>
             </div>
             <div className="space-y-3">
