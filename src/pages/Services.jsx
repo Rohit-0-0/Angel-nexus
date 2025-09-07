@@ -9,19 +9,19 @@ export default function Services() {
       <section className="bg-black border border-gold/30 rounded-xl p-6 md:p-8 mb-6">
         <h3 className="text-2xl font-semibold mb-2">{t('stock_demat')}</h3>
         <p className="text-gray-300 mb-4">{t('stock_demat_p')}</p>
-        <a href="/Contact" className="inline-block bg-gold text-black font-semibold px-5 py-3 rounded hover:bg-gold-light">{t('apply_now')}</a>
+        <a href="/contact" className="inline-block bg-gold text-black font-semibold px-5 py-3 rounded hover:bg-gold-light">{t('apply_now')}</a>
       </section>
 
       <section className="bg-black border border-gold/30 rounded-xl p-6 md:p-8 mb-6">
         <h3 className="text-2xl font-semibold mb-2">{t('insurance_services')}</h3>
         <p className="text-gray-300 mb-4">{t('insurance_services_p')}</p>
-        <a href="/Contact" className="inline-block bg-gold text-black font-semibold px-5 py-3 rounded hover:bg-gold-light">{t('contact_us')}</a>
+        <a href="/contact" className="inline-block bg-gold text-black font-semibold px-5 py-3 rounded hover:bg-gold-light">{t('contact_us')}</a>
       </section>
 
       <section className="bg-black border border-gold/30 rounded-xl p-6 md:p-8">
         <h3 className="text-2xl font-semibold mb-2">{t('financial_advisory')}</h3>
         <p className="text-gray-300 mb-4">{t('financial_advisory_p')}</p>
-        <a href="/Contact" className="inline-block bg-gold text-black font-semibold px-5 py-3 rounded hover:bg-gold-light">{t('talk_to_advisor')}</a>
+        <a href="/contact" className="inline-block bg-gold text-black font-semibold px-5 py-3 rounded hover:bg-gold-light">{t('talk_to_advisor')}</a>
       </section>
     </div>
   );
