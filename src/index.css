@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { @apply min-h-screen bg-charcoal text-white; }
+  body {
+    margin: 0; /* prevent default browser white margins */
+  }
+}
+img{
+  height: 100%;
+  width: 100%;
+}
+#sand{
+  background-image: url(./assets/Yashukosand.jpg);
+  
+}
+#sand::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  
+  background-color: rgba(0, 0, 0, 0.5); /* black overlay with 50% transparency */
+}

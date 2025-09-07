@@ -1,0 +1,180 @@
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+const UiContext = createContext(null);
+
+const STRINGS = {
+  en: {
+    home: 'Home',
+    about: 'About',
+    services: 'Services',
+    blog: 'Blog',
+    news: 'News',
+    careers: 'Careers',
+    contact: 'Contact',
+    cta_open_demat: 'Open Your Demat Account',
+    cta_consult: 'Get Free Consultation',
+    what_we_offer: 'What We Offer',
+    clients_say: 'What Clients Say',
+    how_open_demat: 'How to Open a Demat Account Online',
+    trading: 'Trading',
+    insurance: 'Insurance',
+    investments: 'Investments',
+    trading_desc: 'Demat opening, trading support, and sub-broking.',
+    insurance_desc: 'Health, Life, and Motor insurance plans.',
+    investments_desc: 'SIPs, mutual funds, and long-term wealth planning.',
+    step1: 'STEP 1',
+    step2: 'STEP 2',
+    step3: 'STEP 3',
+    step4: 'STEP 4',
+    step1_h: 'Download the app or visit website',
+    step1_p: 'Start on web or mobile — quick signup.',
+    step2_h: 'Enter mobile and verify OTP',
+    step2_p: 'We’ll verify your number to secure your account.',
+    step3_h: 'Verify KYC and bank details',
+    step3_p: 'Complete KYC as per regulations, safely encrypted.',
+    step4_h: 'eSign your form and documents',
+    step4_p: 'Finish with secure eSign and get started.',
+    tips_updates: 'Get market tips & updates',
+    about_us: 'About Us',
+    vision: 'Vision',
+    mission: 'Mission',
+    story: 'Our Story',
+    usp: 'Our USP',
+    vision_p: 'To make wealth-building simple and accessible for every Indian household.',
+    mission_p: 'Provide transparent, tech-enabled, and personalized financial & insurance solutions.',
+    story_p: 'Angel Nexus started to bridge the gap between finance and everyday users—offering Demat, insurance, and advisory under one digital-first roof.',
+    usp_l1: 'Digital-first onboarding',
+    usp_l2: 'Trusted advisory with human touch',
+    usp_l3: 'End-to-end support across trading, insurance, and investments',
+    our_services: 'Our Services',
+    stock_demat: 'Stock Market & Demat',
+    stock_demat_p: 'Account opening, trading support, and sub-broking to get you started quickly and confidently.',
+    insurance_services: 'Insurance Services',
+    insurance_services_p: 'Comprehensive Health, Life, and Motor coverage with claims support.',
+    financial_advisory: 'Financial Advisory',
+    financial_advisory_p: 'Goal-based planning, mutual funds, and SIP strategies for long-term wealth.',
+    apply_now: 'Apply Now',
+    contact_us: 'Contact Us',
+    talk_to_advisor: 'Talk to an Advisor',
+    blog_h: 'Blog',
+    read_more: 'Read more',
+    news_updates: 'News & Updates',
+    read: 'Read',
+    careers_h: 'Careers',
+    open_positions: 'Open Positions',
+    work_with_us: 'Work with Angel Nexus to grow with us.',
+    apply_now_h: 'Apply Now',
+    full_name: 'Full Name',
+    email: 'Email',
+    phone: 'Phone',
+    submit_application: 'Submit Application',
+    contact_h: 'Contact Us',
+    reach_us: 'Reach us',
+    send_message: 'Send a message',
+    linkedin: 'LinkedIn',
+    instagram: 'Instagram',
+    proceed: 'Proceed',
+    choose_provider: 'Choose Your Account Provider',
+    angel_one: 'Angel One',
+    lemonn: 'Lemonn'
+  },
+  hi: {
+    home: 'होम',
+    about: 'हमारे बारे में',
+    services: 'सेवाएँ',
+    blog: 'ब्लॉग',
+    news: 'समाचार',
+    careers: 'करियर',
+    contact: 'संपर्क',
+    cta_open_demat: 'अपना डीमैट खाता खोलें',
+    cta_consult: 'निःशुल्क सलाह प्राप्त करें',
+    what_we_offer: 'हम क्या प्रदान करते हैं',
+    clients_say: 'ग्राहक क्या कहते हैं',
+    how_open_demat: 'ऑनलाइन डीमैट खाता कैसे खोलें',
+    trading: 'ट्रेडिंग',
+    insurance: 'बीमा',
+    investments: 'निवेश',
+    trading_desc: 'डीमैट खोलना, ट्रेडिंग सपोर्ट और सब-ब्रो​किंग।',
+    insurance_desc: 'हेल्थ, लाइफ और मोटर बीमा योजनाएँ।',
+    investments_desc: 'एसआईपी, म्यूचुअल फंड और दीर्घकालिक धन नियोजन।',
+    step1: 'चरण 1',
+    step2: 'चरण 2',
+    step3: 'चरण 3',
+    step4: 'चरण 4',
+    step1_h: 'ऐप डाउनलोड करें या वेबसाइट पर जाएँ',
+    step1_p: 'वेब या मोबाइल पर शुरू करें — त्वरित साइनअप।',
+    step2_h: 'मोबाइल दर्ज करें और ओटीपी सत्यापित करें',
+    step2_p: 'हम आपके खाते की सुरक्षा के लिए नंबर सत्यापित करेंगे।',
+    step3_h: 'केवाईसी और बैंक विवरण सत्यापित करें',
+    step3_p: 'नियमों के अनुसार सुरक्षित एन्क्रिप्शन के साथ केवाईसी पूर्ण करें।',
+    step4_h: 'फॉर्म और दस्तावेज़ eSign करें',
+    step4_p: 'सुरक्षित ई-साइन के साथ समाप्त करें और शुरू करें।',
+    tips_updates: 'मार्केट टिप्स और अपडेट पाएं',
+    about_us: 'हमारे बारे में',
+    vision: 'विजन',
+    mission: 'मिशन',
+    story: 'हमारी कहानी',
+    usp: 'हमारी विशेषताएँ',
+    vision_p: 'हर भारतीय परिवार के लिए धन निर्माण सरल और सुलभ बनाना।',
+    mission_p: 'पारदर्शी, टेक-सक्षम और व्यक्तिगत वित्तीय एवं बीमा समाधान प्रदान करना।',
+    story_p: 'एंजेल नेक्सस ने वित्त और आम उपयोगकर्ताओं के बीच की दूरी मिटाने के लिए शुरुआत की—एक डिजिटल-फर्स्ट छत के नीचे डीमैट, बीमा और सलाह।',
+    usp_l1: 'डिजिटल-फर्स्ट ऑनबोर्डिंग',
+    usp_l2: 'मानवीय स्पर्श के साथ विश्वसनीय सलाह',
+    usp_l3: 'ट्रेडिंग, बीमा और निवेश में एंड-टू-एंड सपोर्ट',
+    our_services: 'हमारी सेवाएँ',
+    stock_demat: 'स्टॉक मार्केट और डीमैट',
+    stock_demat_p: 'अकाउंट खोलना, ट्रेडिंग सपोर्ट और सब-ब्रो​किंग।',
+    insurance_services: 'बीमा सेवाएँ',
+    insurance_services_p: 'सम्पूर्ण हेल्थ, लाइफ और मोटर कवरेज, क्लेम सपोर्ट सहित।',
+    financial_advisory: 'वित्तीय परामर्श',
+    financial_advisory_p: 'लक्ष्य-आधारित प्लानिंग, म्यूचुअल फंड और एसआईपी रणनीतियाँ।',
+    apply_now: 'अभी आवेदन करें',
+    contact_us: 'संपर्क करें',
+    talk_to_advisor: 'सलाहकार से बात करें',
+    blog_h: 'ब्लॉग',
+    read_more: 'पूरा पढ़ें',
+    news_updates: 'समाचार और अपडेट',
+    read: 'पढ़ें',
+    careers_h: 'करियर',
+    open_positions: 'खाली पद',
+    work_with_us: 'एंजेल नेक्सस के साथ काम करें और आगे बढ़ें।',
+    apply_now_h: 'आवेदन करें',
+    full_name: 'पूरा नाम',
+    email: 'ईमेल',
+    phone: 'फोन',
+    submit_application: 'आवेदन जमा करें',
+    contact_h: 'संपर्क करें',
+    reach_us: 'हमसे संपर्क करें',
+    send_message: 'संदेश भेजें',
+    linkedin: 'लिंक्डइन',
+    instagram: 'इंस्टाग्राम',
+    proceed: 'आगे बढ़ें',
+    choose_provider: 'अपना खाते का प्रदाता चुनें',
+    angel_one: 'एंजेल वन',
+    lemonn: 'लेमन'
+  }
+};
+
+export function UiProvider({ children }) {
+  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'en');
+
+  useEffect(() => {
+    localStorage.setItem('lang', lang);
+  }, [lang]);
+
+  const value = useMemo(() => ({ lang, setLang }), [lang]);
+  return <UiContext.Provider value={value}>{children}</UiContext.Provider>;
+}
+
+export function useUi() {
+  const ctx = useContext(UiContext);
+  if (!ctx) throw new Error('useUi must be used within UiProvider');
+  return ctx;
+}
+
+export function useT() {
+  const { lang } = useUi();
+  return (key) => (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.en[key] || key;
+}
+
+
