@@ -11,7 +11,7 @@ export default function Contact() {
           <p className="text-gray-300">Phone: +91-9285295235</p>
           <div className="mt-6 space-x-4">
             <a className="text-gold hover:underline" rel="noreferrer" href="https://www.linkedin.com/company/angel-nexus/" target='_blank'>LinkedIn</a>
-            <a className="text-gold hover:underline" href="https://www.instagram.com/angelonewithyash?igsh=a2s0cnAxYTh5Z3k%3D&utm_source=qr" target='_blank'>Instagram</a>
+            <a className="text-gold hover:underline" rel="noreferrer" href="https://www.instagram.com/angelonewithyash?igsh=a2s0cnAxYTh5Z3k%3D&utm_source=qr" target='_blank'>Instagram</a>
           </div>
           <div className="mt-6">
             <iframe title="map" className="w-full h-64 rounded-xl border-0" loading="lazy" allowFullScreen src="https://www.google.com/maps?q=Indore&output=embed"></iframe>
